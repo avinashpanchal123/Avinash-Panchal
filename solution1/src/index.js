@@ -66,6 +66,15 @@ function oddNums(n){
 }
 
 
+function getRandom(n){
+    let rand = []
+   for (let i = 0; i < n; i++) {
+    let num = Math.floor(Math.random() * 20) + 1;
+    rand.push(num)
+   }
+   return(rand)
+}
+
 
 
 
@@ -97,6 +106,17 @@ app.get("/odd", (req, res)=>{
 
     let output = {
         odds : odds
+    }
+
+    res.send(output)
+
+})
+
+app.get("/rand", (req, res)=>{
+    let rand = getRandom(10)
+
+    let output = {
+        random : rand
     }
 
     res.send(output)
