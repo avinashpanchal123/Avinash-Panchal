@@ -48,22 +48,39 @@ function fibonacci(n){
 }
 
 
-let fib = fibonacci(8);
-console.log(dp)
+// let fib = fibonacci(8);
+// console.log(dp)
 
-const Primes = primes()
+// const Primes = primes()
 
-console.log(Primes)
+// console.log(Primes)
+
+function oddNums(n){
+    let output = [];
+    for( let i = 1; i < n; i++){
+        if( i % 2 != 0){
+            output.push(i)
+        }
+    }
+    return (output)
+}
+
+
+
 
 
 app.get("/primes", (req, res)=>{
     const Primes = primes()
 
-    res.send(Primes)
+    const output = {
+        primes : Primes
+    }
+
+    res.send(output)
 
 })
 
-app.get("/fib", (req, res)=>{
+app.get("/fibo", (req, res)=>{
     let fib = fibonacci(8);
 
     let output = {
@@ -74,6 +91,17 @@ app.get("/fib", (req, res)=>{
 
 })
 
+
+app.get("/odd", (req, res)=>{
+    let odds = oddNums(20)
+
+    let output = {
+        odds : odds
+    }
+
+    res.send(output)
+
+})
 
 
 app.get("/", (req, res)=>{
