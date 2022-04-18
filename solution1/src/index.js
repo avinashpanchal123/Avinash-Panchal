@@ -16,12 +16,9 @@ function primes(){
             res.push(i)
         }
     }
-    console.log(res)
 
-    let output = {
-        primes: res
-    }
-    return (output)
+ 
+    return (res)
 }
 
 
@@ -55,9 +52,9 @@ function fibonacci(n){
 
 // console.log(Primes)
 
-function oddNums(n){
+function oddNums(){
     let output = [];
-    for( let i = 1; i < n; i++){
+    for( let i = 1; i < 20; i++){
         if( i % 2 != 0){
             output.push(i)
         }
@@ -102,7 +99,7 @@ app.get("/fibo", (req, res)=>{
 
 
 app.get("/odd", (req, res)=>{
-    let odds = oddNums(20)
+    let odds = oddNums()
 
     let output = {
         odds : odds
@@ -122,6 +119,51 @@ app.get("/rand", (req, res)=>{
     res.send(output)
 
 })
+
+
+let output1 = fibonacci(8);
+output1 = dp
+let output2 = getRandom(10);
+let output3 = primes()
+let output4 = oddNums();
+
+
+
+let final = output1.concat(output2.concat(output3.concat(output4)));
+let  n = final.length;
+
+function removeDuplicates(arr , n) {
+    let obj = {}
+    for (let i = 0; i < n; i++) {
+     if( obj[arr[i]] == undefined){
+         obj[arr[i]] = 1
+     }
+     else{
+         obj[arr[i]]++
+     }
+    }
+
+    let keys = Object.keys(obj).map(Number)
+
+    return keys
+    
+    }
+
+  removeDuplicates(final, n)
+
+  app.get("/numbers", (req, res)=>{
+    let nums  = removeDuplicates(final, n).sort((a, b)=>{
+        return a-b
+    })
+
+    let output = {
+        numbers : nums
+    }
+
+    res.send(output)
+  })
+  
+
 
 
 app.get("/", (req, res)=>{
